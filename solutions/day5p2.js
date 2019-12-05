@@ -102,7 +102,7 @@ const execute = () => {
         }
     }
     catch(e) {
-        if (e == 0) {
+        if (e == throwTable.HALT) {
             console.log(output.toString());
         }
         else {
