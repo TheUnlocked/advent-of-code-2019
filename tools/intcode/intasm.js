@@ -66,7 +66,12 @@ const disas = as => {
         if (opName === undefined) {
             opName = `[${String(opData[0])}]`;
         }
-        output.push([opName.toUpperCase(), ...opOutput.slice(opOutput.length - 1), ...opOutput.slice(0, opOutput.length - 1)]);
+        if (opOutput.length === 3) {
+            output.push([opName.toUpperCase(), ...opOutput.slice(opOutput.length - 1), ...opOutput.slice(0, opOutput.length - 1)]);
+        }
+        else {
+            output.push([opName.toUpperCase(), ...opOutput]);
+        }
     }
     return output;
 }
@@ -102,7 +107,9 @@ const assembleInstruction = line => {
     }
 
     let args = cols.slice(1).map(parseAssemblyArg);
-    args = [...args.slice(1), ...args.slice(0,1)];
+    if (args.length === 3) {
+        args = [...args.slice(1), ...args.slice(0,1)];
+    }
 
     const baseOpcode = opTableReverse[cols[0].toLowerCase()].toString().padStart(2, '0');
     if (args.length > 0) {
