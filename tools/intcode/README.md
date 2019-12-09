@@ -24,13 +24,13 @@ Verbs are case-insensitive.
 | --- | --- | --- |
 | `NUM` | `1000`, `-8`, `0` | The integer `NUM` |
 | `@NUM` | `@14`, `@10000`, `@0` |The integer value stored in memory at index `NUM` |
-| `@(r+NUM)`, `@(r-NUM)` | `@(r+60)`, `@(r-12)`, `@(r+0)` | The value stored in memory at the index of `NUM` plus the relative base |
+| `@(s+NUM)`, `@(s-NUM)` | `@(s+60)`, `@(s-12)`, `@(s+0)` | The value stored in memory at the index of `NUM` plus the relative base |
 
 ### Address Argument Table
 | Syntax | Examples | Description |
 | --- | --- | --- |
 | `@NUM` | `@14`, `@10000`, `@0` | The position `NUM` in memory |
-| `@(r+NUM)`, `@(r-NUM)` | `@(r+60)`, `@(r-12)`, `@(r+0)` | The position in memory of `NUM` plus the relative base |
+| `@(s+NUM)`, `@(s-NUM)` | `@(s+60)`, `@(s-12)`, `@(s+0)` | The position in memory of `NUM` plus the relative base |
 
 ### Verb Table
 | Verb | Arguments | Description |
