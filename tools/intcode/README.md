@@ -1,4 +1,16 @@
-# IntASM
+# Running the IntASM assembler/disassembler
+First you must have node latest installed.
+
+Assemble an IntASM file with
+```bash
+node intasm.js as IN_FILE > OUT_FILE
+```
+Disassemble an intcode file into IntASM with
+```bash
+node intasm.js disas IN_FILE > OUT_FILE
+```
+
+# IntASM Specification
 Instructions are separated by line breaks, and arguments and verbs are separated by whitespace. For example:
 ```intasm
 MUL    @63       34463338   34463338
