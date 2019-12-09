@@ -87,7 +87,7 @@ const disasToString = disas => {
 
 const parseAssemblyArg = arg => {
     if (arg.startsWith('@')) {
-        const relMatch = /@\(s((?:\+|-)\d*)\)/.exec(arg);
+        const relMatch = /@\(r((?:\+|-)\d*)\)/.exec(arg);
         if (relMatch) {
             return [String(+relMatch[1]), modeTable.REL];
         }
