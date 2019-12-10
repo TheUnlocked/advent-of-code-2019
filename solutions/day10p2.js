@@ -39,7 +39,6 @@ const sortedPositions = allPositions.filter(x => !(x[0] == 0 && x[1] == 0)).sort
 let dirs = sortedPositions.map(x => reduceFrac(...x)).reduce((current, next) => current.find(x => x[0] == next[0] && x[1] == next[1]) ? current : [...current, next], []);
 const indexOfZeroOne = dirs.findIndex(x => x[0] == 0 && x[1] == -1);
 dirs = [...dirs.slice(indexOfZeroOne), ...dirs.slice(0, indexOfZeroOne)];
-console.log(dirs.map(x => (Math.atan2(x[1], x[0]) / Math.PI).toPrecision(3)).join(', '));
 
 let lastVaporized;
 while (vaporized < 200) {
@@ -47,7 +46,6 @@ while (vaporized < 200) {
         const result = tryVaporize(dir);
         if (result) {
             vaporized++;
-            console.log(`Vaporized ${result}`);
         }
         if (vaporized == 200) {
             lastVaporized = result;
