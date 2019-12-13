@@ -70,13 +70,13 @@ const lcm3 = (a, b, c) => lcm(lcm(a, b), c);
 
 const findWrapOnAxis = axis => {
     const moons = positions.map(x => new Moon(parseVector(x), makeVec(0,0,0)));
-    const original = moons.map(x => "" + x.position[axis] + ",").reduce((current, next) => current + next);
-    let steps = 1;
+    const original = moons.map(x => "" + x.position[axis] + "," + x.velocity[axis] + ",").reduce((current, next) => current + next);
+    let steps = 0;
     while (true) {
         moons.forEach(x => x.applyGravityFromMoons(moons));
         moons.forEach(x => x.move());
         steps++;
-        if (original == moons.map(x => "" + x.position[axis] + ",").reduce((current, next) => current + next)) {
+        if (original == moons.map(x => "" + x.position[axis] + "," + x.velocity[axis] + ",").reduce((current, next) => current + next)) {
             break;
         }
     }
