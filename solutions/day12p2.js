@@ -68,25 +68,19 @@ const gcd = (a, b) => {
 const lcm = (a, b) => a * b / gcd(a, b);
 const lcm3 = (a, b, c) => lcm(lcm(a, b), c);
 
-// This is horribly slow on my data.
-// O(n) array indexes definitely don't help. xP
-// Ideally a hash-based structure would be used.
 const findWrapOnAxis = axis => {
     const moons = positions.map(x => new Moon(parseVector(x), makeVec(0,0,0)));
-    const prev = [];
+    const original = moons.map(x => "" + x.position[axis] + ",").reduce((current, next) => current + next);
+    let steps = 1;
     while (true) {
-        prev.push(moons.map(x => "" + x.position[axis] + x.velocity[axis]).reduce((current, next) => current + next));
         moons.forEach(x => x.applyGravityFromMoons(moons));
         moons.forEach(x => x.move());
-        if (prev.includes(moons.map(x => "" + x.position[axis] + x.velocity[axis]).reduce((current, next) => current + next))) {
+        steps++;
+        if (original == moons.map(x => "" + x.position[axis] + ",").reduce((current, next) => current + next)) {
             break;
         }
-        if (prev.length % 30000 == 0) {
-            console.log("Still crunching numbers...");
-        }
     }
-    console.log("Got a value!");
-    return prev.length;
+    return steps;
 }
 
 console.log(lcm3(findWrapOnAxis('x'), findWrapOnAxis('y'), findWrapOnAxis('z')));
